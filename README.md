@@ -1,6 +1,5 @@
 # GTS
-Repositorio para Grand Theft Stealer, de nuestra charla "No robarás: creando nue
-stro propio stealer desde cero".
+Repositorio para Grand Theft Stealer, de nuestra charla "No robarás: creando nuestro propio stealer desde cero".
 
 # Instalación
 
